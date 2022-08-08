@@ -16,7 +16,7 @@ function App() {
     ])
 
 
-    const [filter, setFilter] = useState('all')
+    const [filter, setFilter] = useState<FilterValuesType>('all')
     let colander = tasks
     if (filter === 'Active') {
         colander = tasks.filter(el => el.isDone !== true)
@@ -33,8 +33,12 @@ function App() {
         setTasks(tasks.filter(task => task.id !== taskID))
     }
 
-    const changeFilter = (filter: string) => {
+    const changeFilter = (filter: FilterValuesType) => {
         setFilter(filter)
+    }
+
+    const changeTaskStatus=(taskID: string, isDone: boolean)=>{
+        setTasks(tasks.map(t=>t.id===taskID ? {...t, isDone}: t))
     }
 
     return (
@@ -42,9 +46,11 @@ function App() {
             <TodoList
                 title={todoListTitle}
                 tasks={colander}
+                filter={filter}
                 removeTask={removeTask}
                 changeFilter={changeFilter}
-                onClickAddTask={addTask} />
+                onClickAddTask={addTask}
+                changeTaskStatus={changeTaskStatus}/>
         </div>
     );
 }
