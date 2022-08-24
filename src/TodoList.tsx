@@ -1,7 +1,9 @@
-import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
+import React, {ChangeEvent} from 'react';
 import {FilterValuesType} from './App';
 import {AddItemForm} from "./Components/AddItemForm";
 import {EditableInput} from "./Components/EditableInput";
+import {Button, IconButton} from "@mui/material";
+
 
 export type TaskType = {
     id: string
@@ -49,7 +51,11 @@ export function Todolist(props: PropsType) {
     return <div>
         <h3>
             <EditableInput title={props.title} callBack={changeTodolistTitleHandler}/>
-            <button onClick={removeTodolist}>x</button>
+            {/*<button onClick={removeTodolist}>x</button>*/}
+            <Button variant="outlined" color="error" onClick={removeTodolist}>
+                Remove
+            </Button>
+
         </h3>
 
        <AddItemForm callBack={addTaskHandler} />
