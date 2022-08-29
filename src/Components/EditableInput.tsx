@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
+import {TextField} from "@material-ui/core";
 
 type PropsType = {
     title: string
@@ -27,7 +28,7 @@ const{title,callBack}=props
 
     return (
         edit
-            ? <input onBlur={toggle} onChange={onChangeHandler} value={newTitle}/>
+            ? <TextField onBlur={toggle} onChange={onChangeHandler} value={newTitle}/>
             : <span onDoubleClick={toggle}>{props.title}</span>
     );
 };

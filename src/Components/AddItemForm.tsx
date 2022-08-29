@@ -1,4 +1,7 @@
 import React, {ChangeEvent, useState} from 'react';
+import {Button, TextField} from "@mui/material";
+import {IconButton} from "@material-ui/core";
+import {ControlPoint} from "@material-ui/icons";
 
 type PropsType = {
     callBack : (title: string)=>void
@@ -26,12 +29,19 @@ export const AddItemForm = (props:PropsType) => {
 
     return (
         <div>
-            <input value={title}
+            <TextField value={title}
                    onChange={onChangeHandler}
-                   className={error ? "error" : ""}
+                       id="standard-basic"
+                       label="Type up here"
+                       variant="outlined"
+                       error={!!error}
+                       helperText={error}
             />
-            <button onClick={addTask}>+</button>
-            {error && <div className="error-message">{error}</div>}
+            <IconButton color={'primary'} onClick={addTask}>
+                <ControlPoint />
+            </IconButton>
+
+
         </div>
     );
 };
