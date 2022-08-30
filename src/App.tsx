@@ -5,6 +5,7 @@ import {v1} from 'uuid';
 import {AddItemForm} from "./Components/AddItemForm";
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from '@material-ui/core';
 import {Menu} from "@material-ui/icons";
+import ButtonAppBar from "./Components/AppBar";
 
 export type FilterValuesType = "all" | "active" | "completed";
 type TodolistType = {
@@ -108,22 +109,7 @@ function App() {
 
     return (
         <div className="App">
-
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                    >
-                        <Menu/>
-                    </IconButton>
-                    <Typography variant="h6">
-                        Menu
-                    </Typography>
-                    <Button color="inherit">Login</Button>
-                </Toolbar>
-            </AppBar>
+            <ButtonAppBar />
 
             <Container fixed>
                 <Grid container style={{padding: '10px'}}>
