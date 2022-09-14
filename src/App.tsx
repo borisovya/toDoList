@@ -3,8 +3,7 @@ import './App.css';
 import {TaskType, Todolist} from './Todolist';
 import {v1} from 'uuid';
 import {AddItemForm} from "./Components/AddItemForm";
-import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from '@material-ui/core';
-import {Menu} from "@material-ui/icons";
+import { Container, Grid, Paper, } from '@material-ui/core';
 import ButtonAppBar from "./Components/AppBar";
 
 export type FilterValuesType = "all" | "active" | "completed";

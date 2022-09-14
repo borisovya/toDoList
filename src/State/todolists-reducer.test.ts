@@ -1,8 +1,7 @@
 import {
     AddTodolistAC,
     changeTodolistFilterAC,
-    changeTodoListTitleAC,
-    removeTodolistAC,
+    changeTodoListTitleAC, RemoveTodolistAC,
     todolistsReducer
 } from './todolists-reducer'
 import { v1 } from 'uuid'
@@ -17,7 +16,7 @@ test.skip('correct todolist should be removed', () => {
         {id: todolistId2, title: 'What to buy', filter: 'all'}
     ]
 
-    const endState = todolistsReducer(startState, removeTodolistAC(todolistId1))
+    const endState = todolistsReducer(startState, RemoveTodolistAC(todolistId1))
 
     expect(endState.length).toBe(1)
     expect(endState[0].id).toBe(todolistId2)
