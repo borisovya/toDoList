@@ -15,6 +15,7 @@ import {
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./State/tasks-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./State/Store";
+import {TodolistWithRedux} from "./TodolistWithRedux";
 
 export type FilterValuesType = "all" | "active" | "completed";
 export type TodolistType = {
@@ -29,8 +30,8 @@ export type TasksStateType = {
 
 
 function AppWithRedux() {
-    let todolistId1 = v1();
-    let todolistId2 = v1();
+    // let todolistId1 = v1();
+    // let todolistId2 = v1();
 
     // let [todolists, dispatchToToDoLists] = useReducer(todolistsReducer,[
     //     {id: todolistId1, title: "What to learn", filter: "all"},
@@ -101,32 +102,24 @@ function AppWithRedux() {
                 <Grid container spacing={3}>
                     {
                         todolists.map(tl => {
-                            let allTodolistTasks = tasks[tl.id];
-                            let tasksForTodolist = allTodolistTasks;
-
-                            if (tl.filter === "active") {
-                                tasksForTodolist = allTodolistTasks.filter(t => t.isDone === false);
-                            }
-                            if (tl.filter === "completed") {
-                                tasksForTodolist = allTodolistTasks.filter(t => t.isDone === true);
-                            }
 
                             return <Grid item>
                                 <Paper elevation={16} style={{padding: '15px', borderRadius: '15px'}}>
-                                    <Todolist
-                                        key={tl.id}
-                                        id={tl.id}
-                                        title={tl.title}
-                                        tasks={tasksForTodolist}
-                                        removeTask={removeTask}
-                                        changeFilter={changeFilter}
-                                        addTask={addTask}
-                                        changeTaskStatus={changeStatus}
-                                        filter={tl.filter}
-                                        removeTodolist={removeTodolist}
-                                        updateTask={updateTask}
-                                        updateTodoList={updateTodoList}
-                                    />
+                                    {/*<Todolist*/}
+                                    {/*    key={tl.id}*/}
+                                    {/*    id={tl.id}*/}
+                                    {/*    title={tl.title}*/}
+                                    {/*    tasks={tasksForTodolist}*/}
+                                    {/*    removeTask={removeTask}*/}
+                                    {/*    changeFilter={changeFilter}*/}
+                                    {/*    addTask={addTask}*/}
+                                    {/*    changeTaskStatus={changeStatus}*/}
+                                    {/*    filter={tl.filter}*/}
+                                    {/*    removeTodolist={removeTodolist}*/}
+                                    {/*    updateTask={updateTask}*/}
+                                    {/*    updateTodoList={updateTodoList}*/}
+                                    {/*/>*/}
+                                    <TodolistWithRedux key={tl.id} todolist={tl} />
                                 </Paper>
                             </Grid>
                         })
