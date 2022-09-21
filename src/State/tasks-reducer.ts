@@ -4,7 +4,8 @@ import {TaskType} from "../Todolist";
 import {addTodolistACType, removeTodolistACType} from "./todolists-reducer";
 
 
-export const tasksReducer = (state: TasksStateType, action: ActionsType): TasksStateType => {
+export const tasksReducer = (state = initialState, action: ActionsType): TasksStateType => {
+
     switch (action.type) {
         case 'REMOVE-TASK':
             return {
@@ -41,14 +42,28 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType): TasksS
             }
 
         case 'REMOVE-TODOLIST':
+            // const[[action.payload.todolistId]:[],...rest] = {...state} // удаление через деструктуризацию
             let copyState = {...state}
-            delete copyState[action.payload.todolistId1]
+            delete copyState[action.payload.todolistId]
             return copyState
 
 
         default:
             return state
     }
+}
+
+
+
+const initialState: TasksStateType = {
+        // [todolistId1]: [
+        //     {id: v1(), title: "HTML&CSS", isDone: true},
+        //     {id: v1(), title: "JS", isDone: true}
+        // ],
+        // [todolistId2]: [
+        //     {id: v1(), title: "Milk", isDone: true},
+        //     {id: v1(), title: "React Book", isDone: true}
+        // ]
 }
 
 type ActionsType =

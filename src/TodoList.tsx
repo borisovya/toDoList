@@ -3,7 +3,7 @@ import {FilterValuesType} from './App';
 import {AddItemForm} from "./Components/AddItemForm";
 import {EditableInput} from "./Components/EditableInput";
 import {Button, IconButton} from "@mui/material";
-import {Delete, Fingerprint} from "@material-ui/icons";
+import {Delete} from "@material-ui/icons";
 import { Checkbox } from '@material-ui/core';
 
 
