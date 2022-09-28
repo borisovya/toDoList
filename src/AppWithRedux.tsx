@@ -5,7 +5,6 @@ import {AddItemForm} from "./Components/AddItemForm";
 import {Container, Grid, Paper,} from '@material-ui/core';
 import ButtonAppBar from "./Components/AppBar";
 import {AddTodolistAC} from "./State/todolists-reducer";
-
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./State/Store";
 import {TodolistWithRedux} from "./TodolistWithRedux";
@@ -26,9 +25,7 @@ function AppWithRedux() {
 
     let todolists = useSelector<AppRootStateType, Array<TodolistType>>(state => state.todolists)
 
-
     const dispatch = useDispatch()
-
 
     const addTodoList = useCallback((newTitle: string) => {
         let action = AddTodolistAC(newTitle)
@@ -48,10 +45,11 @@ function AppWithRedux() {
                     {
                         todolists.map(tl => {
 
-                            return <Grid item  key={tl.id}>
+                            return <Grid item key={tl.id}>
                                 <Paper elevation={16} style={{padding: '15px', borderRadius: '15px'}}>
 
                                     <TodolistWithRedux todolist={tl}/>
+
 
                                 </Paper>
                             </Grid>

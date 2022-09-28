@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, memo, useState} from 'react';
 import {TextField} from "@material-ui/core";
 
 type PropsType = {
@@ -6,8 +6,9 @@ type PropsType = {
     callBack: (newTitle: string)=> void
 }
 
-export const EditableInput = (props: PropsType) => {
-const{title,callBack}=props
+export const EditableInput = memo((props: PropsType) => {
+    console.log('Editableinput')
+    const{title,callBack}=props
     const [edit, setEdit] = useState(false)
     const [newTitle, setNewTitle] = useState(props.title)
 
@@ -31,5 +32,5 @@ const{title,callBack}=props
             ? <TextField onBlur={toggle} onChange={onChangeHandler} value={newTitle}/>
             : <span onDoubleClick={toggle}>{props.title}</span>
     );
-};
+});
 
