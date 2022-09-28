@@ -32,10 +32,7 @@ export const todolistsReducer = (state = initialState, action: mainType): Array<
 
 
 
-const initialState: Array<TodolistType> = [
-    // {id: todolistId1, title: "What to learn", filter: "all"},
-    // {id: todolistId2, title: "What to buy", filter: "all"}
-]
+const initialState: Array<TodolistType> = []
 
 type mainType = removeTodolistACType | addTodolistACType | changeTodoListTitleACType | changeTodolistFilterACType
 

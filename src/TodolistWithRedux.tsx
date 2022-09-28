@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, memo, useCallback} from 'react';
 import {AddItemForm} from "./Components/AddItemForm";
 import {EditableInput} from "./Components/EditableInput";
 import {Button, IconButton} from "@mui/material";
@@ -21,32 +21,34 @@ type PropsType = {
     todolist: TodolistType
 }
 
-export function TodolistWithRedux({todolist}: PropsType) {
-
+export const TodolistWithRedux = memo(({todolist}: PropsType) => {
+    console.log('TodolistWithRedux')
     // let todo = useSelector<AppRootStateType, TodolistType>(state => state.todolists.filter(todo=>todo.id)[0])
-    let todo = useSelector<AppRootStateType, TodolistType>(state => state.todolists.find(todo=>todo.id) as TodolistType)
+    // let todo = useSelector<AppRootStateType, TodolistType>(state => state.todolists.find(todo=>todo.id) as TodolistType)
 
     let tasks = useSelector<AppRootStateType, Array<TaskType>>(state=>state.tasks[todolist.id])
     const dispatch = useDispatch()
 
-    const removeTodolist = () => dispatch(RemoveTodolistAC(todolist.id))
+    const removeTodolist = useCallback(() => dispatch(RemoveTodolistAC(todolist.id)), [dispatch])
 
 
-    const onAllClickHandler = () => dispatch(changeTodolistFilterAC(todolist.id,"all"));
-    const onActiveClickHandler = () => dispatch(changeTodolistFilterAC(todolist.id, "active"));
-    const onCompletedClickHandler = () => dispatch(changeTodolistFilterAC(todolist.id,"completed"));
+    const onAllClickHandler = useCallback(() => dispatch(changeTodolistFilterAC(todolist.id,"all")),[dispatch]);
 
-    const addTaskHandler = (title: string) => {
+    const onActiveClickHandler = useCallback(() => dispatch(changeTodolistFilterAC(todolist.id, "active")), [dispatch]);
+
+    const onCompletedClickHandler = useCallback(() => dispatch(changeTodolistFilterAC(todolist.id,"completed")), [dispatch]);
+
+    const addTaskHandler = useCallback((title: string) => {
         dispatch(addTaskAC(title, todolist.id))
-    }
+    },[dispatch])
 
-    const changeTodolistTitleHandler = (newTitle: string) => {
+    const changeTodolistTitleHandler = useCallback((newTitle: string) => {
         dispatch(changeTodoListTitleAC(todolist.id, newTitle))
-    }
+    }, [dispatch])
 
-    const updateTaskHandler = (taskID:string, newTitle: string) => {
+    const updateTaskHandler = useCallback((taskID:string, newTitle: string) => {
         dispatch(changeTaskTitleAC(taskID, newTitle, todolist.id))
-    }
+    }, [dispatch])
 
 
     if (todolist.filter === "active") {
@@ -102,6 +104,6 @@ export function TodolistWithRedux({todolist}: PropsType) {
             </Button>
         </div>
     </div>
-}
+})
 
 
